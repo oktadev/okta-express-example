@@ -42,7 +42,6 @@ app.get("/", (req, res) => {
 });
 
 app.get("/dashboard", oidc.ensureAuthenticated(), (req, res) => {
-  console.log(req.userinfo);
   res.render("dashboard", { user: req.userinfo });
 });
 

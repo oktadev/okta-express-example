@@ -1,0 +1,13 @@
+extends base.pug
+
+block body
+  h1.text-center User Dashboard
+
+  .jumbotron
+    ul
+      li Your Email Address is: #{user.preferred_username}
+      li Your First Name is: #{user.given_name}
+      li Your Last Name is: #{user.family_name}
+
+    p.
+      If you'd like to logout, please #[a(href="/logout") click here].

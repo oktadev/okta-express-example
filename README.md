@@ -1,74 +1,76 @@
-# basic-okta-express-sample
+# Okta Express App Example
 
-This is a very basic website built with Node.js and Express.js that uses
-[Okta](https://developer.okta.com/) + OpenID Connect for authentication.
+This tutorial shows you how to build a Node.js website with [Express.js](https://expressjs.com/) and
+[OpenID Connect](https://github.com/oktadev/okta-express-basic-crud-app-example/blob/main/blog/2017/07/25/oidc-primer-part-1).
 
+Please read [Use OpenID Connect to Build a Simple Node.js Website](https://developer.okta.com/blog/2017/10/19/use-openid-connect-to-build-a-simple-node-website) to walk through the tutorial.
 
-## Installation
+**Prerequisites**
 
-To install this sample application, run the following commands:
+- Basic knowledge of JavaScript
+- [Node.js](https://nodejs.org/en/)
+- [Okta CLI](https://cli.okta.com/)
 
-```console
-$ git clone https://github.com/oktadeveloper/basic-okta-express-sample.git
-$ cd basic-okta-express-sample
-$ npm install
+> [Okta](https://developer.okta.com/) has Authentication and User Management APIs that reduce development time with instant-on, scalable user infrastructure. Okta's intuitive API and expert support make it easy for developers to authenticate, manage and secure users and roles in any application.
+
+## Getting Started
+
+To install this example application, run the following commands:
+```
+git clone https://github.com/oktadev/okta-express-example.git
+cd okta-express-example
 ```
 
-This will get a copy of the project installed locally, along with all of its
-dependencies.
+### Create an OIDC Application in Okta
 
+Create a free developer account with the following command using the [Okta CLI](https://cli.okta.com):
 
-## Setup
-
-Once you've installed the project, you need to perform some setup in order to
-get things working.
-
-Start by [creating an Okta developer account](https://developer.okta.com).
-
-Next, log into the Okta console and:
-
-- Click the Applications tab
-- Click Add Application
-- Click Web and hit Next
-- Leave all the default options and click Done
-- Copy the Client ID and Client Secret values from the following screen
-- Click the Dashboard link at the top of the page
-- Copy the Org URL value near the top of the page on the right
-
-You should now have three values: Client ID, Client Secret, and Org URL.
-
-Create a file named `.env` and add the following contents (be sure to substitute
-in the correct values where appropriate):
-
-```
-export OKTA_ISSUER_URI=https://{{ YOUR_ORG_URL }}/oauth2/default
-export OKTA_CLIENT_ID={{ YOUR_CLIENT_ID }}
-export OKTA_CLIENT_SECRET={{ YOUR_CLIENT_SECRET }}
-export REDIRECT_URI=http://localhost:3000/authorization-code/callback
-export SECRET=INSERT_A_LONG_RANDOM_STRING_HERE
+```shell
+okta register
 ```
 
-This file contains a series of environment variables that are specific to your
-application. These will be used to provide the required inputs to this website
-in order for it to run successfully.
+If you already have a developer account, use `okta login` to integrate it with the Okta CLI.
 
+Provide the required information. Once you register, create a client application in Okta with the following command:
 
-## Run the Site
+```shell
+okta apps create
+```
 
-Now that you've got the setup done, you need to run the site.
+You will be prompted to select the following options:
+- Type of Application: **1: Web**
+- Redirect URI: `http://localhost:3000/authorization-code/callback`
+- Logout Redirect URI: `http://localhost:3000/`
 
-First: you'll need to "activate" your environment variables from before. To do
+Run `cat .okta.env` (or `.okta.env` on Windows) to see the issuer and credentials for your app. Update `server.js` with your Okta settings.
+
+### Install dependencies and run the app
+
+To install the dependencies, run the following command:
+```
+npm install
+```
+
+First: you'll need to activate your environment variables from before. To do
 this, run the following command:
 
 ```console
-$ source .env
+source .okta.env
 ```
 
-Next, you'll want to run the actual website locally:
+Next, you'll want to run the website locally:
 
 ```console
-$ npm start
+npm start
 ```
 
 Finally, open your browser, visit [http://localhost:3000](http://localhost:3000)
-and test out the site!
+and check out the site!
+
+## Help
+
+Please post any questions as comments on the [blog post][https://developer.okta.com/blog/2017/10/19/use-openid-connect-to-build-a-simple-node-website], or visit our [Okta Developer Forums](https://devforum.okta.com/).
+
+## License
+
+Apache 2.0, see [LICENSE](LICENSE).

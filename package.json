@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "@okta/oidc-middleware": "0.0.6",
-    "express": "^4.16.2",
-    "express-session": "^1.15.6",
-    "pug": "^2.0.0-rc.4"
+    "@okta/oidc-middleware": "^4.3.0",
+    "express": "^4.17.2",
+    "express-session": "^1.17.2",
+    "pug": "^3.0.2"
   },
   "devDependencies": {},
   "scripts": {

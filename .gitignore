@@ -1,1 +1,4 @@
 .env
+.okta.env
+
+node_modules/
